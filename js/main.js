@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const formData = new FormData(form);
     
     try {
-      const response = await fetch('/.netlify/functions/submitForm', {
+      const response = await fetch('/api/submitForm', {
         method: 'POST',
         body: formData
       });

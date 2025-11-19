@@ -1,17 +1,22 @@
 const nodemailer = require('nodemailer');
 const multipart = require('parse-multipart-data');
 
-exports.handler = async (event, context) => {
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      body: JSON.stringify({ message: 'Method Not Allowed' })
-    };
+module.exports = async (req, res) => {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
   try {
-    const boundary = multipart.getBoundary(event.headers['content-type']);
-    const parts = multipart.parse(Buffer.from(event.body, 'base64'), boundary);
+    // Get raw body buffer
+    const chunks = [];
+    for await (const chunk of req) {
+      chunks.push(chunk);
+    }
+    const buffer = Buffer.concat(chunks);
+
+    // Parse multipart form data
+    const boundary = multipart.getBoundary(req.headers['content-type']);
+    const parts = multipart.parse(buffer, boundary);
 
     const formData = {};
     let fileData = null;
@@ -28,9 +33,8 @@ exports.handler = async (event, context) => {
       }
     });
 
-    // Create transporter with explicit require
-    const createTransport = nodemailer.createTransport || nodemailer.default?.createTransport;
-    const transporter = createTransport({
+    // Create transporter
+    const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: process.env.SMTP_PORT,
       secure: true,
@@ -91,27 +95,19 @@ exports.handler = async (event, context) => {
     await transporter.sendMail(emailToOwner);
     await transporter.sendMail(emailToCustomer);
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ success: true, message: 'Quote request submitted successfully' })
-    };
+    return res.status(200).json({ success: true, message: 'Quote request submitted successfully' });
 
   } catch (error) {
     console.error('Detailed Error:', {
       message: error.message,
       stack: error.stack,
       code: error.code,
-      command: error.command,
-      nodemailerType: typeof nodemailer,
-      nodemailerKeys: Object.keys(nodemailer)
+      command: error.command
     });
-    return {
-      statusCode: 500,
-      body: JSON.stringify({
-        success: false,
-        message: 'Internal server error',
-        error: error.message
-      })
-    };
+    return res.status(500).json({
+      success: false,
+      message: 'Internal server error',
+      error: error.message
+    });
   }
 };

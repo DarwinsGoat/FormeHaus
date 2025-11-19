@@ -6,3 +6,5 @@
   to = "/3d-printing-website.html"
   status = 200
   force = false
+
+# Updated for better error logging

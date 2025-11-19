@@ -72,23 +72,99 @@ module.exports = async (req, res) => {
       to: formData.email,
       subject: 'Quote Request Received - FormeHaus',
       html: `
-        <h2>✓ Quote Request Received!</h2>
-        <p>Hi ${formData.name},</p>
-        <p>Thank you for your inquiry. We've received your project details and 3D file, and we'll review them carefully.</p>
-        <p>You can expect a detailed quote within 1-2 business days, including pricing, timeline, and material recommendations.</p>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body style="margin:0; padding:0; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background-color:#FAF7F2; color:#2B2B2B;">
+          <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#FAF7F2; padding:40px 20px;">
+            <tr>
+              <td align="center">
+                <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background-color:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
 
-        <h3>Your Submission Summary:</h3>
-        <p><strong>Project Description:</strong> ${formData.description}</p>
-        <p><strong>Preferred Scale/Size:</strong> ${formData.scale || 'Not specified'}</p>
-        <p><strong>Material:</strong> ${formData.material}</p>
-        <p><strong>Surface Finishing:</strong> ${formData.finishing}</p>
-        <p><strong>Timeline:</strong> ${formData.timeline || 'Not specified'}</p>
-        ${formData.notes ? `<p><strong>Additional Notes:</strong> ${formData.notes}</p>` : ''}
-        <p><strong>3D File:</strong> ${fileData ? fileData.filename : 'No file attached'}</p>
+                  <!-- Header -->
+                  <tr>
+                    <td style="background:#D98B4C; padding:32px 40px; text-align:center;">
+                      <h1 style="margin:0; color:#ffffff; font-size:28px; font-weight:600; letter-spacing:-0.5px;">Quote Request Received</h1>
+                    </td>
+                  </tr>
 
-        <br>
-        <p>If you have any questions in the meantime, feel free to reply to this email.</p>
-        <p>Best regards,<br><strong>Kobi Walsh</strong><br>FormeHaus</p>
+                  <!-- Content -->
+                  <tr>
+                    <td style="padding:40px;">
+                      <p style="margin:0 0 20px 0; font-size:17px; line-height:1.6; color:#2B2B2B;">Hi <strong>${formData.name}</strong>,</p>
+
+                      <p style="margin:0 0 20px 0; font-size:16px; line-height:1.6; color:#4a4a4a;">Thank you for your inquiry. We've received your project details and 3D file, and we'll review them carefully.</p>
+
+                      <div style="background:#f8f6f3; border-left:4px solid #D98B4C; padding:20px; margin:24px 0; border-radius:4px;">
+                        <p style="margin:0 0 8px 0; font-size:15px; font-weight:600; color:#2B2B2B;">What's Next?</p>
+                        <p style="margin:0; font-size:15px; line-height:1.6; color:#4a4a4a;">You can expect a detailed quote within <strong>1-2 business days</strong>, including pricing, timeline, and material recommendations.</p>
+                      </div>
+
+                      <!-- Summary Section -->
+                      <h2 style="margin:32px 0 16px 0; font-size:20px; font-weight:600; color:#2B2B2B; border-bottom:2px solid #D98B4C; padding-bottom:8px;">Your Submission Summary</h2>
+
+                      <table width="100%" cellpadding="8" cellspacing="0" style="font-size:15px; line-height:1.6;">
+                        <tr>
+                          <td style="padding:8px 0; color:#666; vertical-align:top; width:180px;"><strong>Project Description:</strong></td>
+                          <td style="padding:8px 0; color:#2B2B2B;">${formData.description}</td>
+                        </tr>
+                        ${formData.scale ? `
+                        <tr>
+                          <td style="padding:8px 0; color:#666; vertical-align:top;"><strong>Preferred Scale/Size:</strong></td>
+                          <td style="padding:8px 0; color:#2B2B2B;">${formData.scale}</td>
+                        </tr>
+                        ` : ''}
+                        <tr>
+                          <td style="padding:8px 0; color:#666; vertical-align:top;"><strong>Material:</strong></td>
+                          <td style="padding:8px 0; color:#2B2B2B;">${formData.material}</td>
+                        </tr>
+                        <tr>
+                          <td style="padding:8px 0; color:#666; vertical-align:top;"><strong>Surface Finishing:</strong></td>
+                          <td style="padding:8px 0; color:#2B2B2B;">${formData.finishing}</td>
+                        </tr>
+                        ${formData.timeline ? `
+                        <tr>
+                          <td style="padding:8px 0; color:#666; vertical-align:top;"><strong>Timeline:</strong></td>
+                          <td style="padding:8px 0; color:#2B2B2B;">${formData.timeline}</td>
+                        </tr>
+                        ` : ''}
+                        ${formData.notes ? `
+                        <tr>
+                          <td style="padding:8px 0; color:#666; vertical-align:top;"><strong>Additional Notes:</strong></td>
+                          <td style="padding:8px 0; color:#2B2B2B;">${formData.notes}</td>
+                        </tr>
+                        ` : ''}
+                        <tr>
+                          <td style="padding:8px 0; color:#666; vertical-align:top;"><strong>3D File:</strong></td>
+                          <td style="padding:8px 0; color:#2B2B2B;">${fileData ? fileData.filename : 'No file attached'}</td>
+                        </tr>
+                      </table>
+
+                      <p style="margin:32px 0 0 0; font-size:15px; line-height:1.6; color:#4a4a4a;">If you have any questions in the meantime, feel free to reply to this email.</p>
+                    </td>
+                  </tr>
+
+                  <!-- Footer -->
+                  <tr>
+                    <td style="background:#f8f6f3; padding:32px 40px; border-top:1px solid #e0ddd8;">
+                      <p style="margin:0 0 4px 0; font-size:15px; font-weight:600; color:#2B2B2B;">Best regards,</p>
+                      <p style="margin:0 0 2px 0; font-size:15px; font-weight:600; color:#D98B4C;">Kobi Walsh</p>
+                      <p style="margin:0; font-size:14px; color:#666;">FormeHaus</p>
+                    </td>
+                  </tr>
+
+                </table>
+
+                <!-- Footer Text -->
+                <p style="margin:24px 0 0 0; font-size:13px; color:#999; text-align:center;">© 2025 FormeHaus. All rights reserved.</p>
+              </td>
+            </tr>
+          </table>
+        </body>
+        </html>
       `
     };
 

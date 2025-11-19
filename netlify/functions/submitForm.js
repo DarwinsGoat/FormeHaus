@@ -12,10 +12,10 @@ exports.handler = async (event, context) => {
   try {
     const boundary = multipart.getBoundary(event.headers['content-type']);
     const parts = multipart.parse(Buffer.from(event.body, 'base64'), boundary);
-    
+
     const formData = {};
     let fileData = null;
-    
+
     parts.forEach(part => {
       if (part.filename) {
         fileData = {
@@ -27,8 +27,10 @@ exports.handler = async (event, context) => {
         formData[part.name] = part.data.toString();
       }
     });
-    
-    const transporter = nodemailer.createTransporter({
+
+    // Create transporter with explicit require
+    const createTransport = nodemailer.createTransport || nodemailer.default?.createTransport;
+    const transporter = createTransport({
       host: process.env.SMTP_HOST,
       port: process.env.SMTP_PORT,
       secure: true,
@@ -37,7 +39,7 @@ exports.handler = async (event, context) => {
         pass: process.env.SMTP_PASS
       }
     });
-    
+
     const emailToOwner = {
       from: process.env.SMTP_USER,
       to: process.env.OWNER_EMAIL,
@@ -60,7 +62,7 @@ exports.handler = async (event, context) => {
         content: fileData.data
       }] : []
     };
-    
+
     const emailToCustomer = {
       from: process.env.SMTP_USER,
       to: formData.email,
@@ -85,28 +87,30 @@ exports.handler = async (event, context) => {
         <p>Best regards,<br><strong>Kobi Walsh</strong><br>FormeHaus</p>
       `
     };
-    
+
     await transporter.sendMail(emailToOwner);
     await transporter.sendMail(emailToCustomer);
-    
+
     return {
       statusCode: 200,
       body: JSON.stringify({ success: true, message: 'Quote request submitted successfully' })
     };
-    
+
   } catch (error) {
     console.error('Detailed Error:', {
       message: error.message,
       stack: error.stack,
       code: error.code,
-      command: error.command
+      command: error.command,
+      nodemailerType: typeof nodemailer,
+      nodemailerKeys: Object.keys(nodemailer)
     });
     return {
       statusCode: 500,
       body: JSON.stringify({
         success: false,
         message: 'Internal server error',
-        error: error.message // This will help debug in production
+        error: error.message
       })
     };
   }

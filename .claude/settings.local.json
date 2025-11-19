@@ -6,7 +6,17 @@
       "Bash(netlify dev)",
       "Bash(npx netlify-cli dev)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote add:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(gh auth:*)",
+      "Bash(/opt/homebrew/bin/gh auth status)",
+      "Bash(/usr/local/bin/gh auth status)",
+      "Bash(git config:*)",
+      "Bash(GIT_TERMINAL_PROMPT=0 git push:*)"
     ],
     "deny": [],
     "ask": []

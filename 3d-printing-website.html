@@ -81,10 +81,13 @@
         gap: 24px;
       }
       .section {
-        padding: 5% 5% !important;
+        padding: 10% 7.5% !important;
       }
       div[style*="min-height:750px"] {
-        padding: 5% 5% !important;
+        padding: 10% 0 !important;
+      }
+      div[style*="min-height:750px"] > div {
+        padding: 0 7.5% !important;
       }
       .box {
         max-width: 600px;
@@ -93,11 +96,17 @@
     }
     @media (max-width: 600px) {
       .section {
-        padding: 5% 4% !important;
+        padding: 10% 7.5% !important;
       }
       div[style*="min-height:750px"] {
-        padding: 5% 4% !important;
+        padding: 10% 0 !important;
         min-height: auto !important;
+      }
+      div[style*="min-height:750px"] > div {
+        padding: 0 7.5% !important;
+      }
+      div[style*="min-height:100vh"] h1 {
+        font-size: 32px !important;
       }
       h2 {
         font-size: 32px;

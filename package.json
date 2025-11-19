@@ -1,0 +1,9 @@
+{
+  "name": "3d-printing-website",
+  "version": "1.0.0",
+  "description": "Artist-led 3D printing service website",
+  "dependencies": {
+    "nodemailer": "^6.9.7",
+    "parse-multipart-data": "^1.5.0"
+  }
+}

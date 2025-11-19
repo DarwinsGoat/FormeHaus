@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FormeHaus – Artist-Led 3D Printing Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background:#FAF7F2 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=') repeat;
+      color: #2B2B2B;
+      line-height: 1.7;
+      font-weight: 400;
+      overflow-x: hidden;
+    }
+    .section {
+      padding: 80px 20px;
+      border-bottom: 1px solid #e0ddd8;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hero {
+      background: #FAF7F2;
+      text-align: center;
+      padding: 140px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 18px 36px;
+      background: #D98B4C;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      margin-top: 30px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .box {
+      background: #FFFFFF; box-shadow: 0 10px 20px rgba(0,0,0,0.04); border-top: 3px solid #D98B4C;
+      padding: 28px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      min-height: 180px;
+    }
+    .footer {
+      text-align: center;
+      padding: 30px;
+      background: #f0f0f0;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    h2 {
+      font-size: 42px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      margin-top: 0;
+    }
+    p {
+      font-weight: 400;
+    }
+    @media (max-width: 1024px) {
+      .grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px;
+      }
+      .section {
+        padding: 5% 5% !important;
+      }
+      div[style*="min-height:750px"] {
+        padding: 5% 5% !important;
+      }
+      .box {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+    @media (max-width: 600px) {
+      .section {
+        padding: 5% 4% !important;
+      }
+      div[style*="min-height:750px"] {
+        padding: 5% 4% !important;
+        min-height: auto !important;
+      }
+      h2 {
+        font-size: 32px;
+      }
+      .box {
+        max-width: 100%;
+        padding: 20px;
+      }
+    }
+</style>
+</head>
+<body>
+  <!-- HERO -->
+  <div style="position:relative; width:100%; min-height:100vh; background:url('/images/Hero image.jpg') center/cover no-repeat; display:flex; align-items:center; justify-content:center;">
+    <!-- Dark overlay for better text readability -->
+    <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.4);"></div>
+
+    <!-- Hero Content -->
+    <div style="position:relative; z-index:1; padding:80px 20px; max-width:1100px; margin:0 auto; text-align:center; color:#fff;">
+      <!-- Logo Placeholder: Organic + Structural Hybrid -->
+      <div style="width:130px; height:130px; margin:0 auto 45px auto; border:2px solid #fff; border-radius:50% 28% 58% 42% / 40% 60% 30% 50%;"></div>
+
+      <h1 style="font-family:'Inter', sans-serif; font-size:56px; letter-spacing:-0.02em; margin-bottom:20px; color:#fff; text-shadow:0 2px 4px rgba(0,0,0,0.3); font-weight:600;">Custom Large-Scale 3D Prints for Artists</h1>
+
+      <p style="font-size:21px; line-height:1.5; max-width:680px; margin:0 auto 35px auto; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.3); font-weight:400;">Precision made for artists — large-format models for casting, mold-making, and sculptural fabrication.</p>
+
+      <a class="cta-btn" style="box-shadow:0 6px 14px rgba(217,139,76,0.4); letter-spacing:0.3px; font-size:19px; padding:18px 40px;" href="#quote">Get a Quote</a>
+    </div>
+
+    <!-- Scroll Down Arrow -->
+    <a href="#made-for-artists" style="position:absolute; bottom:40px; left:50%; transform:translateX(-50%); text-decoration:none; z-index:2; animation:bounce 2s infinite;">
+      <div style="width:40px; height:40px; border:2px solid rgba(255,255,255,0.6); border-radius:50%; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px); background:rgba(255,255,255,0.1);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+    </a>
+
+    <style>
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+        40% { transform: translateX(-50%) translateY(-10px); }
+        60% { transform: translateX(-50%) translateY(-5px); }
+      }
+    </style>
+  </div>
+
+  <!-- VALUE PROP -->
+  <div class="section" id="made-for-artists" style="display: flex; flex-direction: column; justify-content: center; padding: 5% 7.5%;">
+    <h2 style="margin-bottom:10px; margin-left:0;">Made for Artists</h2>
+    <p style="max-width:700px; margin-top:0; margin-left:0; font-size:18px; opacity:0.7;">High-fidelity printing for sculptors, mold-makers, and fine-art fabrication.</p>
+    <div class="grid" style="margin-top:10px;">
+  <div class="box" style="background: url('/images/section-background.jpg') center/cover; position:relative; overflow:hidden; backdrop-filter:blur(8px);">
+        <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(255,255,255,0.7); backdrop-filter:blur(8px);"></div>
+        <div style="position:relative; z-index:1;">
+          <img src="/images/High fidelity print image.jpg" alt="High fidelity 3D print" style="width:100%; height:200px; object-fit:cover; border-radius:8px; margin-bottom:25px;">
+          <strong style="font-family:'Inter', sans-serif; font-size:17px; display:block; margin-bottom:10px; text-align:center; font-weight:600;">High-Fidelity Prints</strong>
+          <p style="font-size:16px; line-height:1.6; margin:0; color:#4a4a4a;">High-fidelity prints produced with an artist's standards in mind — clean forms, clear detail, and consistent results for sculptural use.</p>
+        </div>
+      </div>
+  <div class="box" style="background: url('/images/section-background.jpg') center/cover; position:relative; overflow:hidden; backdrop-filter:blur(8px);">
+        <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(255,255,255,0.7); backdrop-filter:blur(8px);"></div>
+        <div style="position:relative; z-index:1;">
+          <img src="/images/Large scale models images.jpg" alt="Large scale model in production" style="width:100%; height:200px; object-fit:cover; border-radius:8px; margin-bottom:25px;">
+          <strong style="font-family:'Inter', sans-serif; font-size:17px; display:block; margin-bottom:10px; text-align:center; font-weight:600;">Large-Scale Models</strong>
+          <p style="font-size:16px; line-height:1.6; margin:0; color:#4a4a4a;">Large-scale models printed with the strength, precision, and surface resolution needed for mold-making, casting, prototyping, and exhibition builds.</p>
+        </div>
+      </div>
+  <div class="box" style="background: url('/images/section-background.jpg') center/cover; position:relative; overflow:hidden; backdrop-filter:blur(8px);">
+        <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(255,255,255,0.7); backdrop-filter:blur(8px);"></div>
+        <div style="position:relative; z-index:1;">
+          <img src="/images/Surface finishings.jpg" alt="Surface finishing details" style="width:100%; height:200px; object-fit:cover; border-radius:8px; margin-bottom:25px;">
+          <strong style="font-family:'Inter', sans-serif; font-size:17px; display:block; margin-bottom:10px; text-align:center; font-weight:600;">Surface Finishing</strong>
+          <p style="font-size:16px; line-height:1.6; margin:0; color:#4a4a4a;">Optional surface finishing — sanding, smoothing, and detail prep done with a fine artist's attention to texture and material.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS - Overlaid on Hero Image 2 -->
+  <div style="position:relative; width:100%; min-height:750px; background:url('/images/Hero image 2.jpg') center/cover no-repeat; display:flex; align-items:center; justify-content:center; padding: 5% 0;">
+    <!-- Dark overlay for contrast -->
+    <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.35);"></div>
+
+    <!-- How It Works Content -->
+    <div style="position:relative; z-index:1; width:100%; max-width:1100px; display: flex; flex-direction: column; justify-content: center; padding:0 7.5%; margin:0;">
+      <h2 style="color:#fff; text-shadow:0 2px 6px rgba(0,0,0,0.6); margin-bottom:10px; margin-left:0;">How It Works</h2>
+      <p style="max-width:700px; margin-top:0; margin-left:0; font-size:18px; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.6); opacity:0.95;">A simple, artist-friendly process — from file to finished piece.</p>
+      <div class="grid" style="margin-top:10px; margin-left:0;">
+  <div style="background: url('/images/section-background.jpg') center/cover; border:none; box-shadow:0 8px 32px rgba(0,0,0,0.15); border-radius:10px; padding:28px; position:relative; overflow:hidden;">
+          <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(255,255,255,0.7); backdrop-filter:blur(8px);"></div>
+          <div style="position:relative; z-index:1;">
+            <strong style="font-family:'Inter', sans-serif; font-size:20px; display:block; margin-bottom:12px; color:#2B2B2B; text-align:center; font-weight:600; letter-spacing:-0.01em; min-height:60px; display:flex; align-items:center; justify-content:center;">1. Send Your Print-Ready 3D Model</strong>
+            <p style="font-size:16px; line-height:1.6; margin:0; color:#4a4a4a;">Upload your STL, OBJ, or other print-ready file. Models must be complete and ready to print — no editing or sculpting services included.</p>
+          </div>
+        </div>
+  <div style="background: url('/images/section-background.jpg') center/cover; border:none; box-shadow:0 8px 32px rgba(0,0,0,0.15); border-radius:10px; padding:28px; position:relative; overflow:hidden;">
+          <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(255,255,255,0.7); backdrop-filter:blur(8px);"></div>
+          <div style="position:relative; z-index:1;">
+            <strong style="font-family:'Inter', sans-serif; font-size:20px; display:flex; align-items:center; justify-content:center; margin-bottom:12px; color:#2B2B2B; text-align:center; font-weight:600; letter-spacing:-0.01em; min-height:60px;">2. Approve Scale, Material & Pricing</strong>
+            <p style="font-size:16px; line-height:1.6; margin:0; color:#4a4a4a;">You'll receive a clear quote with recommendations, sizing, materials, and timeline.</p>
+          </div>
+        </div>
+  <div style="background: url('/images/section-background.jpg') center/cover; border:none; box-shadow:0 8px 32px rgba(0,0,0,0.15); border-radius:10px; padding:28px; position:relative; overflow:hidden;">
+          <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(255,255,255,0.7); backdrop-filter:blur(8px);"></div>
+          <div style="position:relative; z-index:1;">
+            <strong style="font-family:'Inter', sans-serif; font-size:20px; display:flex; align-items:center; justify-content:center; margin-bottom:12px; color:#2B2B2B; text-align:center; font-weight:600; letter-spacing:-0.01em; min-height:60px;">3. Print, Finish & Deliver</strong>
+            <p style="font-size:16px; line-height:1.6; margin:0; color:#4a4a4a;">Your piece is printed at high resolution, optionally surface-finished, inspected for accuracy, and shipped safely to your studio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS - Hidden until we have testimonials -->
+  <!-- <div class="section">
+    <h2>Trusted by Artists</h2>
+    <div class="box">"The level of detail was exactly what I needed for casting. The process felt like working with another sculptor — not a machine shop." — Professional Sculptor</div>
+  </div> -->
+
+  <!-- ABOUT -->
+  <div class="section" style="display: flex; flex-direction: column; justify-content: center; padding: 5% 7.5%;">
+    <h2 style="margin-bottom:10px; margin-left:0;">About FormeHaus</h2>
+    <p style="max-width:700px; margin-top:0; margin-left:0; font-size:18px; opacity:0.7;">Artist-led fabrication rooted in precision, craft, and creative practice.</p>
+  <div class="box" style="background: url('/images/section-background.jpg') center/cover; position:relative; overflow:hidden;">
+      <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(255,255,255,0.7); backdrop-filter:blur(8px);"></div>
+      <div style="position:relative; z-index:1;">
+        <p style="font-size:17px; line-height:1.65; margin-bottom:18px; margin-top:0;">
+          <strong style="font-weight:600;">FormeHaus</strong> was founded by <strong style="font-weight:600;">Kobi Walsh</strong>, a fine artist with over a decade of experience working across photography, sculpture, and digital fabrication. With a deep understanding of form, material, and the demands of artistic production, FormeHaus bridges the gap between traditional craft and modern technology.
+        </p>
+        <p style="font-size:17px; line-height:1.65; margin-bottom:18px;">
+          Every print is produced with the same attention to detail and technical rigor that defines fine art practice — precise layer resolution, careful material selection, and an understanding of how prints will be used in casting, mold-making, and exhibition contexts.
+        </p>
+        <p style="font-size:17px; line-height:1.65; margin:0;">
+          Unlike commercial fabrication services, FormeHaus approaches each project with an artist's eye. You're not working with a machine shop — you're collaborating with someone who understands sculptural form, surface quality, and the creative process. High-fidelity prints. Artist-to-artist communication. Work that meets the standards of your practice.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div style="position:relative; width:100%; min-height:750px; background:url('/images/quote-background.jpg') center/cover no-repeat; display:flex; align-items:center; justify-content:center; padding: 5% 0;">
+    <div id="quote" style="position:relative; z-index:1; width:100%; max-width:1100px; display: flex; flex-direction: column; justify-content: center; padding:0 7.5%; margin:0;">
+      <h2 style="color:#fff; text-shadow:0 2px 6px rgba(0,0,0,0.6); margin-bottom:10px; margin-left:0;">Get a Quote</h2>
+      <p style="max-width:700px; margin-top:0; margin-left:0; font-size:18px; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.6); opacity:0.95;">Tell us about your project and we'll get back to you with a detailed quote.</p>
+
+      <div class="box" style="background:rgba(255,255,255,0.95); backdrop-filter:blur(12px);">
+      <!-- Success Message (hidden by default) -->
+      <div id="successMessage" class="success-message" style="display:none;">
+        <h3>✓ Quote Request Received!</h3>
+        <p>Thank you for your inquiry. We'll review your project details and 3D file, and get back to you within 1-2 business days with a detailed quote including pricing, timeline, and material recommendations.</p>
+        <p style="margin-top:20px;"><strong>What's next?</strong></p>
+        <p style="font-size:16px; opacity:0.9;">Check your email for a confirmation. We'll reach out shortly to discuss your project in detail.</p>
+      </div>
+
+      <!-- Quote Form -->
+      <form id="quoteForm" enctype="multipart/form-data">
+
+        <!-- Contact Information -->
+        <h3 style="margin-top:0; font-family:'Inter', sans-serif; font-size:20px; border-bottom:2px solid #D98B4C; padding-bottom:10px;">Contact Information</h3>
+
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+          <div id="nameError" class="error-message">Please enter your name</div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          <div id="emailError" class="error-message">Please enter a valid email address</div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number (Optional)</label>
+          <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+        </div>
+
+        <!-- Project Details -->
+        <h3 style="font-family:'Inter', sans-serif; font-size:20px; border-bottom:2px solid #D98B4C; padding-bottom:10px; margin-top:40px;">Project Details</h3>
+
+        <div class="form-group">
+          <label for="description">Project Description *</label>
+          <textarea id="description" name="description" placeholder="Describe your project, intended use (casting, mold-making, etc.), and any specific requirements..." required></textarea>
+          <div id="descriptionError" class="error-message">Please describe your project</div>
+        </div>
+
+        <div class="form-group">
+          <label for="scale">Preferred Scale / Size</label>
+          <input type="text" id="scale" name="scale" placeholder="e.g., 12 inches tall, life-size, 1:4 scale">
+          <small style="font-size:14px; opacity:0.7; display:block; margin-top:5px;">If you're unsure, we can discuss sizing recommendations</small>
+        </div>
+
+        <div class="form-group">
+          <label for="material">Preferred Material *</label>
+          <select id="material" name="material" required>
+            <option value="">Select a material</option>
+            <option value="pla">PLA — Best for prototypes and testing</option>
+            <option value="pla-plus">PLA+ — High strength, ideal for mold-making and casting</option>
+            <option value="petg">PETG — Durable and heat resistant, great for functional parts</option>
+            <option value="not-sure">Not sure – need recommendation</option>
+          </select>
+          <div id="materialError" class="error-message">Please select a material preference</div>
+        </div>
+
+        <div class="form-group">
+          <label for="finishing">Surface Finishing *</label>
+          <select id="finishing" name="finishing" required>
+            <option value="">Select finishing preference</option>
+            <option value="as-printed">As-Printed (No finishing)</option>
+            <option value="light-sanding">Light Sanding (Smooth visible layer lines)</option>
+            <option value="full-finishing">Full Finishing (Sanded, primed, ready for paint/mold)</option>
+            <option value="consult">Need consultation on finishing</option>
+          </select>
+          <div id="finishingError" class="error-message">Please select a finishing option</div>
+        </div>
+
+        <div class="form-group">
+          <label for="timeline">Timeline / Deadline</label>
+          <input type="text" id="timeline" name="timeline" placeholder="e.g., No rush, needed by March 15, ASAP">
+        </div>
+
+        <!-- File Upload -->
+        <h3 style="font-family:'Inter', sans-serif; font-size:20px; border-bottom:2px solid #D98B4C; padding-bottom:10px; margin-top:40px;">Upload 3D File *</h3>
+
+        <div class="form-group">
+          <div id="fileUploadArea" class="file-upload-area">
+            <div style="font-size:18px; margin-bottom:8px;">📁 Drag & Drop 3D File Here</div>
+            <div style="font-size:14px; opacity:0.7;">or click to browse</div>
+            <div style="font-size:12px; opacity:0.6; margin-top:10px;">Accepts .STL, .OBJ files up to 250MB</div>
+          </div>
+          <input type="file" id="fileInput" name="file" accept=".stl,.obj" required>
+          <div id="fileName" class="file-name"></div>
+          <div id="fileError" class="error-message">Please upload a 3D model file (.stl or .obj)</div>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Additional Notes or Questions</label>
+          <textarea id="notes" name="notes" placeholder="Any other details, questions, or special requests..." style="min-height:80px;"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div id="formError" class="error-message" style="margin-bottom:20px;">An error occurred. Please try again or contact us directly.</div>
+
+        <button type="submit" id="submitBtn" class="cta-btn" style="width:100%; margin:0; font-size:18px; padding:18px;">
+          Submit Quote Request
+        </button>
+
+        <p style="font-size:13px; text-align:center; margin-top:15px; opacity:0.7;">
+          * Required fields. We respect your privacy and will only use your information to provide a quote.
+        </p>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">© 2025 FormeHaus. All rights reserved.</div>
+
+  <!-- Link external CSS and JS -->
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/main.js"></script>
+</body>
+</html>

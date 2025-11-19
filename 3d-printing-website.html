@@ -79,15 +79,37 @@
       .grid {
         grid-template-columns: 1fr !important;
         gap: 24px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
       }
       .section {
         padding: 10% 7.5% !important;
+      }
+      .section > h2,
+      .section > p {
+        max-width: 600px;
+        margin-left: auto !important;
+        margin-right: auto !important;
       }
       div[style*="min-height:750px"] {
         padding: 10% 0 !important;
       }
       div[style*="min-height:750px"] > div {
         padding: 0 7.5% !important;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      div[style*="min-height:750px"] .grid {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      div[style*="min-height:750px"] h2,
+      div[style*="min-height:750px"] > div > p {
+        max-width: 600px;
+        margin-left: auto !important;
+        margin-right: auto !important;
       }
       .box {
         max-width: 600px;

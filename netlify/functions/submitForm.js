@@ -95,10 +95,19 @@ exports.handler = async (event, context) => {
     };
     
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Detailed Error:', {
+      message: error.message,
+      stack: error.stack,
+      code: error.code,
+      command: error.command
+    });
     return {
       statusCode: 500,
-      body: JSON.stringify({ success: false, message: 'Internal server error' })
+      body: JSON.stringify({
+        success: false,
+        message: 'Internal server error',
+        error: error.message // This will help debug in production
+      })
     };
   }
 };

@@ -9,8 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const ctaButtons = document.querySelectorAll('.cta-btn');
   ctaButtons.forEach(button => {
     button.addEventListener('click', function() {
+      console.log('CTA button clicked');
       if (typeof fbq !== 'undefined') {
         fbq('track', 'InitiateCheckout');
+        console.log('InitiateCheckout event fired');
+      } else {
+        console.log('fbq not defined');
       }
     });
   });
@@ -98,6 +102,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const result = await response.json();
 
       if (result.success) {
+        console.log('Form submitted successfully');
+
         if (typeof gtag !== 'undefined') {
           gtag('event', 'quote_submit', {
             event_category: 'lead',
@@ -107,6 +113,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (typeof fbq !== 'undefined') {
           fbq('track', 'Lead', {}, { eventID: eventId });
+          console.log('Lead event fired with eventID:', eventId);
+        } else {
+          console.log('fbq not defined for Lead event');
         }
         
         document.getElementById('quoteForm').style.display = 'none';

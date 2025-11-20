@@ -16,7 +16,8 @@
       "Bash(/opt/homebrew/bin/gh auth status)",
       "Bash(/usr/local/bin/gh auth status)",
       "Bash(git config:*)",
-      "Bash(GIT_TERMINAL_PROMPT=0 git push:*)"
+      "Bash(GIT_TERMINAL_PROMPT=0 git push:*)",
+      "Bash(lsof:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,5 +1,12 @@
 const nodemailer = require('nodemailer');
 const multipart = require('parse-multipart-data');
+const crypto = require('crypto');
+const bizSdk = require('facebook-nodejs-business-sdk');
+
+const ServerEvent = bizSdk.ServerEvent;
+const EventRequest = bizSdk.EventRequest;
+const UserData = bizSdk.UserData;
+const CustomData = bizSdk.CustomData;
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -170,6 +177,74 @@ module.exports = async (req, res) => {
 
     await transporter.sendMail(emailToOwner);
     await transporter.sendMail(emailToCustomer);
+
+    // Send Meta Conversions API event
+    try {
+      const accessToken = process.env.META_ACCESS_TOKEN;
+      const pixelId = process.env.META_PIXEL_ID;
+
+      if (accessToken && pixelId) {
+        // Hash user data for privacy
+        const hashData = (data) => {
+          if (!data) return null;
+          return crypto.createHash('sha256').update(data.toLowerCase().trim()).digest('hex');
+        };
+
+        // Get client IP and user agent
+        const clientIpAddress = req.headers['x-forwarded-for']?.split(',')[0] ||
+                                req.headers['x-real-ip'] ||
+                                req.socket.remoteAddress;
+        const clientUserAgent = req.headers['user-agent'];
+
+        // Create user data
+        const userData = new UserData()
+          .setEmails([hashData(formData.email)])
+          .setPhones(formData.phone ? [hashData(formData.phone)] : [])
+          .setClientIpAddress(clientIpAddress)
+          .setClientUserAgent(clientUserAgent)
+          .setFbc(formData.fbc || null)  // Facebook click ID from cookie
+          .setFbp(formData.fbp || null); // Facebook browser ID from cookie
+
+        // Split name into first and last
+        const nameParts = formData.name.split(' ');
+        const firstName = nameParts[0];
+        const lastName = nameParts.slice(1).join(' ');
+
+        if (firstName) userData.setFirstNames([hashData(firstName)]);
+        if (lastName) userData.setLastNames([hashData(lastName)]);
+
+        // Create custom data
+        const customData = new CustomData()
+          .setContentName('Quote Request')
+          .setContentCategory('3D Printing')
+          .setValue(0)  // You can set estimated value here
+          .setCurrency('USD');
+
+        // Create server event
+        const serverEvent = new ServerEvent()
+          .setEventName('Lead')
+          .setEventTime(Math.floor(Date.now() / 1000))
+          .setUserData(userData)
+          .setCustomData(customData)
+          .setEventSourceUrl(req.headers.referer || req.headers.origin || 'https://formehaus.com')
+          .setActionSource('website');
+
+        // Add event_id for deduplication if provided
+        if (formData.event_id) {
+          serverEvent.setEventId(formData.event_id);
+        }
+
+        // Send to Meta
+        const eventRequest = new EventRequest(accessToken, pixelId)
+          .setEvents([serverEvent]);
+
+        await eventRequest.execute();
+        console.log('Meta CAPI event sent successfully');
+      }
+    } catch (capiError) {
+      // Don't fail the request if CAPI fails, just log it
+      console.error('Meta CAPI Error:', capiError.message);
+    }
 
     return res.status(200).json({ success: true, message: 'Quote request submitted successfully' });
 

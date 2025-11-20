@@ -66,27 +66,37 @@ document.addEventListener('DOMContentLoaded', function() {
   
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
-    
+
     clearAllErrors();
-    
+
     if (!validateForm()) {
       return;
     }
-    
+
     submitBtn.disabled = true;
     const originalText = submitBtn.textContent;
     submitBtn.innerHTML = originalText + ' <span class="spinner"></span>';
-    
+
     const formData = new FormData(form);
-    
+
+    // Generate event_id for deduplication between pixel and CAPI
+    const eventId = 'lead_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    formData.append('event_id', eventId);
+
+    // Get Facebook browser cookies for better matching
+    const fbp = getCookie('_fbp');
+    const fbc = getCookie('_fbc');
+    if (fbp) formData.append('fbp', fbp);
+    if (fbc) formData.append('fbc', fbc);
+
     try {
       const response = await fetch('/api/submitForm', {
         method: 'POST',
         body: formData
       });
-      
+
       const result = await response.json();
-      
+
       if (result.success) {
         if (typeof gtag !== 'undefined') {
           gtag('event', 'quote_submit', {
@@ -94,9 +104,9 @@ document.addEventListener('DOMContentLoaded', function() {
             value: 1
           });
         }
-        
+
         if (typeof fbq !== 'undefined') {
-          fbq('track', 'Lead');
+          fbq('track', 'Lead', {}, { eventID: eventId });
         }
         
         document.getElementById('quoteForm').style.display = 'none';
@@ -183,4 +193,12 @@ document.addEventListener('DOMContentLoaded', function() {
       hideError('emailError');
     }
   });
+
+  // Helper function to get cookies
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+  }
 });

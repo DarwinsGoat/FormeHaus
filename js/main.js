@@ -4,6 +4,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const fileUploadArea = document.getElementById('fileUploadArea');
   const fileName = document.getElementById('fileName');
   const submitBtn = document.getElementById('submitBtn');
+
+  // Track CTA button clicks
+  const ctaButtons = document.querySelectorAll('.cta-btn');
+  ctaButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'InitiateCheckout');
+      }
+    });
+  });
   
   fileUploadArea.addEventListener('click', function() {
     fileInput.click();

@@ -14,7 +14,7 @@ This website is set up for deployment on Netlify with serverless functions for t
 git init
 git add .
 git commit -m "Initial commit"
-git remote add origin YOUR_GIT_REPO_URL
+git remote add origin https://github.com/DarwinsGoat/FormeHaus.git
 git push -u origin main
 ```
 
